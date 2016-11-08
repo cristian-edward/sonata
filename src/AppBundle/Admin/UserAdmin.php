@@ -8,7 +8,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
+use FOS\UserBundle\Model\UserManagerInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 /**
 * Admin User class for login
 */
@@ -22,6 +23,7 @@ class UserAdmin extends AbstractAdmin
     	$formMapper->add('username')
     			   ->add('email')
     			   ->add('password')
+    			   
     			   #->add('enable', 'checkbox')
     			 #  ->add('locked', 'checkbox')
     			   #->add('expired', 'date')
@@ -36,8 +38,8 @@ class UserAdmin extends AbstractAdmin
     {
         #This method configures the filters, used to filter and sort the list of models;
         $datagridMapper->add('username')
-    			   ->add('email')
-    			   ->add('password')
+	    			   ->add('email')
+	    			   ->add('password')
         ;
     }
 
