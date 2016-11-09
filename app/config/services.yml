@@ -22,3 +22,11 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: 'Administration', label: "User" }
       arguments: [~, AppBundle\Entity\User, ~]
+
+    redirect.after.login:
+      class: AppBundle\Redirection\AfterLoginRedirection
+      arguments: ['@router']
+
+    redirect.after.logout:
+      class: AppBundle\Redirection\AfterLogoutRedirection
+      arguments: ['@router','@security.authorization_checker']
