@@ -10,7 +10,7 @@ services:
     app.admin.category:
       class: AppBundle\Admin\CategoryAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: 'Categoty', label: "Category" }
+        - { name: sonata.admin, manager_type: orm, group: 'Administration', label: "Category" }
       arguments: [~, AppBundle\Entity\Category, ~]
     app.admin.blog_post:
       class: AppBundle\Admin\BlogPostAdmin

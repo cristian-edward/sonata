@@ -84,26 +84,7 @@ sonata_admin:
                 icon: '<i class="fa fa-cogs"></i>'
             Category:
                 icon: '<i class="fa fa-cogs"></i>'
-            
-            # news:
-            #     #icon: '<i class="fa fa-cogs"></i>'
-            #     #lable: Admin
-            #     #route: 
-            #     label:                ~
-            #     label_catalogue:      ~
-            #     items:
-            #         - sonata.news.admin.post
-            #         - route:        blog_home
-            #           label:        Blog
-            #         - route:        blog_article
-            #           route_params: { articleId: 3 }
-            #           label:        Article
-
-           # user:
-              #  icon: '<i class="fa fa-cogs"></i>'
-              #  lable: User
-               # items:
-                  #  - sonata.admin.user
+                
     templates:
         layout:                         SonataAdminBundle::standard_layout.html.twig
         ajax:                           SonataAdminBundle::ajax_layout.html.twig
@@ -134,6 +115,24 @@ sonata_admin:
         short_object_description:       SonataAdminBundle:Helper:short-object-description.html.twig
         search_result_block:            SonataAdminBundle:Block:block_search_result.html.twig
         knp_menu_template:              SonataAdminBundle:Menu:sonata_menu.html.twig
+
+    security:
+        handler: sonata.admin.security.handler.acl
+
+        #acl security information
+        information:
+            GUEST:    [VIEW, LIST]
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [OPERATOR, EXPORT]
+            ADMIN:    [MASTER]
+
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+
 #FOSUserBundle
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
